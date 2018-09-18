@@ -19,20 +19,20 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
-    "start": "rollup -c rollup.config.ts -w",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
-    "deploy-docs": "ts-node tools/gh-pages-publish",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
-    "semantic-release": "semantic-release",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "postinstall": "ts-node tools/init",
+    "prebuild": "rimraf dist",
     "precommit": "lint-staged",
-    "postinstall": "ts-node tools/init"
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+    "semantic-release": "semantic-release",
+    "start": "rollup -c rollup.config.ts -w",
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "test:watch": "jest --watch",
+    "test": "jest"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
